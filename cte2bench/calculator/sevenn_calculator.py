@@ -7,8 +7,8 @@ import warnings
 from sevenn.calculator import SevenNetCalculator
 
 CALC_DCT = {
-    'ompa': '/data2/shared_data/cps/o50mp7a_ft/checkpoint_2.pth',
-    'omni': '/data2/shared_data/cps/omni/oob_v5/checkpoint_1.pth',
+    'ompa': '',
+    'omni': '',
     }
 
 FUNC_DCT = {
