@@ -1,0 +1,88 @@
+---
+
+directory:
+    input: ./input/phononDB-PBE-103-structures.extxyz
+    load_args:
+        format: extxyz
+        index: ":"
+
+calculator:
+    calc: 7net
+    batch: false
+    model: omni
+    path: $PATH_TO_CHECKPOINT
+    avg_atom_num: 2000
+    d3: false
+    calc_args:
+        modal: mpa
+        enable_flash: true
+    modal: mpa
+    tag: omni_mpa
+
+unitcell:
+    cont: false
+    load: false
+    run: true
+    save: ./unitcell
+
+strain:
+    cont: false
+    load: false
+    run: true
+    save: ./eos
+    load_opt: false
+    eps: [-0.02, -0.01, 0.00, 0.01, 0.02, 0.03, 0.04]
+
+supercell:
+    cont: false
+    run: true
+    load: false
+    symprec: 1.0e-05
+    distance: 0.02
+    random_seed: 42
+    symm_fc2: true
+    run_fc2: true
+    load_fc2: false
+    save: ./phonon_supercell
+
+harmonic:
+    run: true
+    cont: false
+    run_mesh: true
+    run_thermal: true
+    run_dos: true
+    run_band: true
+    symprec: 1.0e-05
+    t_min: 0
+    t_max: 1005
+    t_step: 5
+    save: ./harmonic
+
+qha:
+    run: true
+    t_max: 1005
+    thin_number: 50
+    eps: [-0.02, -0.01, 0.00, 0.01, 0.02, 0.03, 0.04]
+    data: ./data
+    plot: ./plot
+    full: ./full
+    eos: birch_murnaghan
+    save: ./qha
+
+opt:
+    unitcell:
+        fmax: 1.0e-4
+        steps: 5000
+        optimizer: fire
+        fix_symm: false
+        cell_filter: frechet
+        mask: [0, 0, 1, 0, 0, 0]
+    strain:
+        fmax: 1.0e-04
+        steps: 5000
+        optimizer: fire
+        fix_symm: false
+        const_vol: true
+        cell_filter: frechet
+        mask: [0, 0, 0, 0, 0, 0]
+...

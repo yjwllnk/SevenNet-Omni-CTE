@@ -1,0 +1,42 @@
+[build-system]
+requires = [
+    "setuptools",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "cte2bench"
+version = "0.0.1"
+authors = [
+  { name = "Yujin(Will) Kang", email = "yjkang@snu.ac.kr" },
+  ]
+description = "python package for benchmarking the volumetric coefficient of thermal expansion with universal machine learning interatomic potentials; benchmark dataset - phononDB"
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    "phonopy",
+    "phono3py",
+    "pymatgen",
+    "seekpath",
+    "spglib"
+    ]
+
+[project.scripts]
+cte2bench = "cte2bench.scripts.main:main"
+cte2bench-run = "cte2bench.scripts.main:main"
+
+[tool.setuptools]
+packages = [
+    "cte2bench",
+    "cte2bench.calculator",
+    "cte2bench.structure",
+    "cte2bench.phonon",
+    "cte2bench.util",
+]
+
+[project.urls]
+Homepage = "https://github.com/ywllnkang/cte2-benchmark"
+Issues = "https://github.com/ywllnkang/cte2-benchmark/issues"
